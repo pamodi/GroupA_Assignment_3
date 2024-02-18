@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/google/uuid"
@@ -52,4 +53,11 @@ func addItems(w http.ResponseWriter, r *http.Request) {
 	items = append(items, newItem)
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(newItem)
+}
+func main() {
+	http.HandleFunc("/items", itemsHandler)
+	http.HandleFunc("/items/", itemsHandler)
+
+	fmt.Printf("Server is starting on port: %v\n", Dport)
+	http.ListenAndServe(":8012", nil)
 }
