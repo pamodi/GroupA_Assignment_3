@@ -2,10 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
-
-	"github.com/google/uuid"
 )
 
 // Define Item struct
@@ -19,7 +16,7 @@ var items = []Item{}
 
 const Dport = ":8012"
 
-//created by Samhitha Dubbaka - 500225971
+// created by Samhitha Dubbaka - 500225971
 // Items handler to handle get and post requests for items
 func itemsHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
@@ -30,4 +27,10 @@ func itemsHandler(w http.ResponseWriter, r *http.Request) {
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}
+}
+
+// Function to get all the items
+// created by Abhisheik Yadla
+func getItems(w http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(w).Encode(items)
 }
