@@ -34,3 +34,20 @@ func itemsHandler(w http.ResponseWriter, r *http.Request) {
 func getItems(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(items)
 }
+
+//Created by Tejaswi Cheripally - 500229934
+// Function to add an item
+func addItems(w http.ResponseWriter, r *http.Request) {
+	var newItem Item
+
+	if err := json.NewDecoder(r.Body).Decode(&newItem); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	// Generate a unique ID for the item
+	newItem.ID = uuid.New().String()
+	items = append(items, newItem)
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(newItem)
+}
