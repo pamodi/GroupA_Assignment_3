@@ -59,5 +59,5 @@ func main() {
 	http.HandleFunc("/items/", itemsHandler)
 
 	fmt.Printf("Server is starting on port: %v\n", Dport)
-	http.ListenAndServe(":8012", nil)
+	http.ListenAndServe(":8012", nil)
 }
