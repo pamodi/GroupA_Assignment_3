@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+
+	"github.com/google/uuid"
 )
 
 // Define Item struct
@@ -35,7 +37,7 @@ func getItems(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(items)
 }
 
-//Created by Tejaswi Cheripally - 500229934
+// Created by Tejaswi Cheripally - 500229934
 // Function to add an item
 func addItems(w http.ResponseWriter, r *http.Request) {
 	var newItem Item
